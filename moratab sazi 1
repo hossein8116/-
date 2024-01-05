@@ -1,0 +1,19 @@
+def sort_names(names):
+    return sorted(names, key=lambda x: (x.split()[0], x.split()[1]))
+import random
+import timeit
+
+def generate_names(n):
+    first_names = ['John', 'Jane', 'Michael', 'Emily', 'William', 'Olivia']
+    last_names = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis']
+    names = []
+    for i in range(n):
+        name = random.choice(first_names) + ' ' + random.choice(last_names)
+        names.append(name)
+    return names
+
+sizes = [10, 50, 100, 500, 1000]
+for size in sizes:
+    names = generate_names(size)
+    t = timeit.timeit(lambda: sort_names(names), number=1000)
+    print(f'Size size: t:.6f seconds')
